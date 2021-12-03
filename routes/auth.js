@@ -53,11 +53,11 @@ router.post('/login', async(req,res) => {
 })
 
 
-router.get("/profile",tokenAuth, (req,res)=>{
-    User.findByPk(req.user._id).then(foundUser=>{
-      res.json(foundUser)
-    })
-  })
+//router.get("/profile",tokenAuth, (req,res)=>{
+//    User.findByPk(req.user._id).then(foundUser=>{
+//      res.json(foundUser)
+//    })
+//  })
 
 
 
