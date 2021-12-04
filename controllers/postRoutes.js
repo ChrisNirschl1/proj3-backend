@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { User, Post } = require("../models");
-const tokenAuth = require("../middleware/tokenAuth");
-const isMyPost = require("../middleware/isMyPost");
+const { User, Post } = require("../testmodels");
+const tokenAuth = require("../testmiddleware/tokenAuth");
+const isMyPost = require("../testmiddleware/isMyPost");
 
 //Get all posts
 router.get("/", (req, res) => {
@@ -86,7 +86,8 @@ router.put("/:id", tokenAuth, isMyPost, (req, res) => {
 
 
 router.delete("/:id", tokenAuth, isMyPost, (req, res) => {
-    Post.destroy(
+  console.log(req.params.id) 
+  Post.destroy(
         {
           where: {
             id: req.params.id
