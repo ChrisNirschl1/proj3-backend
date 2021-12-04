@@ -1,8 +1,6 @@
-const Comment = require('./Comment')
-const CommentedSong = require('./CommentedSong')
-const Post = require('./Post')
-const Song = require('./Song')
-const User = require('./User')
+//const Post = require('./Post')
+//const Song = require('./Song')
+//const User = require('./User')
 
 
 //Comment relationships
@@ -25,4 +23,4 @@ const User = require('./User')
 
 
 
-module.exports = {Comment, CommentedSong, Post, Song, User}
+//module.exports = {Comment, CommentedSong, Post, Song, User}

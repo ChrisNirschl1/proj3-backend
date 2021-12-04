@@ -3,9 +3,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 const router = express.Router();
 const tokenAuth = require("../middleware/tokenAuth")
-const { User,Post } = require("../models");
+const { User, Post } = require("../testmodels");
 
 router.post("/signup", (req, res) => {
+  console.log(req.body)
     User.create({
       email: req.body.email,
       password: req.body.password

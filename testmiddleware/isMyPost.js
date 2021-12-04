@@ -1,4 +1,4 @@
-const {Post} = require("../models")
+const {Post} = require("../testmodels")
 
 const isMyPost = (req,res,next)=>{
     Post.findByPk(req.params.id).then(foundPost=>{
