@@ -10,11 +10,10 @@ const app = express();
 app.use(cors())
 //DEPLOYED
 // app.use(cors({
-//     origin:["https://reactauthdemo-front.herokuapp.com"]
 // }))
 const PORT = process.env.PORT || 3001;
 // Requiring our models for syncing
-const { User} = require('./testmodels');
+const {User} = require('./testmodels');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -27,3 +26,9 @@ sequelize.sync({ force: false }).then(function() {
     console.log('App listening on PORT ' + PORT);
     });
 });
+
+
+// Add to package.json script if missing -  "seed": "node testseeds/seed.js"
+
+
+
