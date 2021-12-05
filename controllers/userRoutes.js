@@ -5,6 +5,13 @@ const router = express.Router();
 const tokenAuth = require("../middleware/tokenAuth")
 const { User, Post } = require("../testmodels");
 
+//POST Register user with password bcryption
+//POST http://localhost:3001/signup - user.id is assigned at this point
+// {
+//  "email": "user.email",
+//  "password": "user.password",
+//  }
+
 router.post("/signup", (req, res) => {
   console.log(req.body)
     User.create({
@@ -19,7 +26,14 @@ router.post("/signup", (req, res) => {
         res.status(500).json({ err });
       });
   });
-  
+
+//POST Login existing user & grant persistent token authorization
+//POST http://localhost:3001/login - token is assigned upon successful login
+// {
+//  "email": "user.email",
+//  "password": "user.password",
+//  }
+
 router.post("/login", (req, res) => {
     User.findOne({
       where: {
@@ -54,16 +68,18 @@ router.post("/login", (req, res) => {
       });
   });
   
-  router.get("/secretclub",tokenAuth, (req,res)=>{
-    res.send(`welcome to the club, ${req.user.email}`)
-  })
-  
+  //GET User BY JWT authorization
+  //GET http://localhost:3001/profile + jasonwebtoken
+
   router.get("/profile",tokenAuth, (req,res)=>{
     User.findByPk(req.user.id).then(foundUser=>{
       res.json(foundUser)
     })
   })
   
+  //GET User by ID, including any posts they have made
+  //GET http://localhost:3001/api/users/:id/posts - replace :id with userId number
+
   router.get("/api/users/:id/posts",(req,res)=>{
     User.findByPk(req.params.id,{include:[Post]}).then(foundUser=>{
       res.json(foundUser)
