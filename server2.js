@@ -7,12 +7,12 @@ const cors = require("cors");
 // =============================================================
 const app = express();
 //LOCAL
-app.use(cors())
+//app.use(cors())
 //DEPLOYED
-// app.use(cors({
-    // origin:["https://reactauthdemo-back.herokuapp.com"]
+ app.use(cors({
+     origin:["https://soundbyte100.herokuapp.com"]
     //do not add trailing slash
-// }))
+}));
 const PORT = process.env.PORT || 3001;
 // Requiring our models for syncing
 const {User} = require('./testmodels');
