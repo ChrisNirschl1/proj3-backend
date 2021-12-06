@@ -14,7 +14,8 @@ Post.init({
         allowNull:false
     },   
 },{
-    sequelize
+    sequelize,
+    timestamps: true,
 });
 
 module.exports=Post

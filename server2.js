@@ -10,7 +10,9 @@ const app = express();
 //app.use(cors())
 //DEPLOYED
  app.use(cors({
- }))
+     origin:["https://soundbyte.herokuapp.com"]
+    //do not add trailing slash
+}));
 const PORT = process.env.PORT || 3001;
 // Requiring our models for syncing
 const {User} = require('./testmodels');
