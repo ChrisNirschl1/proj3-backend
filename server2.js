@@ -10,7 +10,7 @@ const app = express();
 //app.use(cors())
 //DEPLOYED
  app.use(cors({
-     origin:["https://soundbyte.herokuapp.com"]
+     origin:["https://soundbyte100.herokuapp.com"]
     //do not add trailing slash
 }));
 const PORT = process.env.PORT || 3001;
