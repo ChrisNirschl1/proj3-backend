@@ -35,8 +35,8 @@ router.get("/users", (req, res) => {
   Post.findAll({
       order:[["createdAt", "DESC"]],
   })
-    .then(posts => {
-      res.json(posts);
+    .then(Posts => {
+      res.json(Posts);
     })
     .catch(err => {
       console.log(err);
