@@ -13,7 +13,9 @@ const isMyPost = require("../testmiddleware/isMyPost");
 //    }
 
 router.get("/", (req, res) => {
-  Post.findAll()
+  Post.findAll({
+    order: [["createdAt", "DESC"]],
+  })
     .then(Posts => {
       res.json(Posts);
     })
@@ -31,10 +33,10 @@ router.get("/", (req, res) => {
 
 router.get("/users", (req, res) => {
   Post.findAll({
-    include: [User]
+      order:[["createdAt", "DESC"]],
   })
-    .then(posts => {
-      res.json(posts);
+    .then(Posts => {
+      res.json(Posts);
     })
     .catch(err => {
       console.log(err);
