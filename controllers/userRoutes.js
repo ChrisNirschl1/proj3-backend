@@ -85,6 +85,6 @@ router.post("/login", (req, res) => {
       res.json(foundUser)
     })
   })
-  
+  //find one with an include needs both models
   
   module.exports = router;
