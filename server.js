@@ -1,30 +1,36 @@
 const express = require('express');
+const allRoutes = require('./controllers');
+const sequelize = require('./config/connection');
+const cors = require("cors");
+
+// Sets up the Express App
+// =============================================================
 const app = express();
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const helmet = require('helmet');
-const morgan = require('morgan');
-const userRoute = require("./routes/users");
-const authRoute = require("./routes/auth");
-const postRoute = require("./routes/posts");
+//LOCAL
+//app.use(cors())
+//DEPLOYED
+ app.use(cors({
+     origin:["https://soundbyte100.herokuapp.com"]
+    //do not add trailing slash
+}));
+const PORT = process.env.PORT || 3001;
+// Requiring our models for syncing
+const {User} = require('./testmodels');
 
-dotenv.config();
-
-mongoose.connect(process.env.MONGO_URI, { 
-    useNewUrlParser: true,
- }).then(() => console.log("MongoDB is connected!"))
- .catch(err => console.error(err));
-
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
-app.use(helmet());
-app.use(morgan("common"));
 
-app.use("/api/users", userRoute);
-app.use("/api/auth", authRoute);
-app.use("/api/posts", postRoute);
+// Static directory
+app.use('/',allRoutes);
 
-app.listen(8080, () => {
-    console.log("Now connected to the Backend server!");
-})
+sequelize.sync({ force: false }).then(function() {
+    app.listen(PORT, function() {
+    console.log('App listening on PORT ' + PORT);
+    });
+});
+
+
+// Add to package.json script if missing -  "seed": "node testseeds/seed.js"
+
+
+
