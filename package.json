@@ -26,8 +26,7 @@
     "seed": "node testseeds/seed.js"
   },
   "eslintConfig": {
-    "extends": [
-    ]
+    "extends": []
   },
   "browserslist": {
     "production": [
